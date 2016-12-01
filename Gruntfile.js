@@ -60,6 +60,10 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
+      prod: {
+        files: {
+          'public/dist/s.min.css': ['public/*.css'] }
+      }
     },
 
     watch: {
@@ -81,7 +85,10 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
-        command: 'git push live master'
+        command: [
+          'git push origin master',
+          'git push live master'
+        ].join('&&')
       }
     }
   });
@@ -112,7 +119,8 @@ module.exports = function(grunt) {
     'clean',
     'eslint',
     'concat',
-    'uglify'
+    'uglify',
+    'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
@@ -135,7 +143,7 @@ module.exports = function(grunt) {
       ]);
     } else {
       grunt.task.run([
-        'server-dev'
+        'upload'
       ]);
     }
   }
