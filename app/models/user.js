@@ -1,17 +1,17 @@
-const db = require('../config');
-const bcrypt = require('bcrypt-nodejs');
-const Promise = require('bluebird');
-const mongoose = require('mongoose');
+var db = require('../config');
+var bcrypt = require('bcrypt-nodejs');
+var Promise = require('bluebird');
+var mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema ({
+var userSchema = mongoose.Schema ({
   username: {type: String, required: true, index: { unique: true} },
   password: {type: String, required: true}
 });
 
-const User = mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema);
 
 userSchema.pre('save', function(next) {
-  let cipher = Promise.promisify(bcrypt.hash);
+  var cipher = Promise.promisify(bcrypt.hash);
   return cipher(this.password, null, null).bind(this)
     .then(function(hash) {
       this.password = hash;

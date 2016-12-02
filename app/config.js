@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/shortlydb');
 
-const db = mongoose.connection;
+var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'DATABASE ERROR: '));
 db.once('open', function() {
