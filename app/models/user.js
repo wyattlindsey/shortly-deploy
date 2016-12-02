@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const db = require('../config');
 const bcrypt = require('bcrypt-nodejs');
@@ -21,8 +21,8 @@ userSchema.pre('save', function(next) {
     });
 });
 
-User.comparePassword = function(attemptedPassword, callback) {
-  bcrypt.compare(attemptedPassword, this.password, function(err, isMatch) {
+User.comparePassword = function(attemptedPassword, userPassword, callback) {
+  bcrypt.compare(attemptedPassword, userPassword, function(err, isMatch) {
     if (err) {
       return callback(err);
     }
