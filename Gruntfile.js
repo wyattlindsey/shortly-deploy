@@ -35,7 +35,7 @@ module.exports = function(grunt) {
     uglify: {
       prod: {
         options: {
-          banner: '\'use strict\';\n'
+          banner: '\"use strict\";\n'
         },
         files: {
           'public/dist/app.min.js': 'public/dist/app.js'
