@@ -1,8 +1,10 @@
-var db = require('../config');
-var crypto = require('crypto');
-var mongoose = require('mongoose');
+"use strict";
 
-var linkSchema = mongoose.Schema({
+const db = require('../config');
+const crypto = require('crypto');
+const mongoose = require('mongoose');
+
+const linkSchema = mongoose.Schema({
   url: String,
   baseUrl: String,
   code: String,
@@ -10,10 +12,10 @@ var linkSchema = mongoose.Schema({
   visits: {type: Number, default: 0}
 });
 
-var Link = mongoose.model('Link', linkSchema);
+const Link = mongoose.model('Link', linkSchema);
 
 linkSchema.pre('save', function(next) {
-  var shasum = crypto.createHash('sha1');
+  const shasum = crypto.createHash('sha1');
   shasum.update(this.url);
   this.code = shasum.digest('hex').slice(0, 5);
   next();
