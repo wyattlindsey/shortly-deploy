@@ -52,10 +52,11 @@ module.exports = function(grunt) {
         configFile: '.eslintrc.js'
       },
       target: [
-        '*.js',
-        '**/*.js',
-        '!public/lib',
-        '!node_modules/*'
+        'public/**/*.js',
+        'lib/**/*.js',
+        'app/**/*.js',
+        'test/**/*.js',
+        '*.js'
       ]
     },
 
