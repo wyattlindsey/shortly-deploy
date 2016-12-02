@@ -35,7 +35,7 @@ module.exports = function(grunt) {
     uglify: {
       prod: {
         options: {
-
+          banner: '\'use strict;\' \n'
         },
         files: {
           'public/dist/app.min.js': 'public/dist/app.js'
@@ -128,6 +128,7 @@ module.exports = function(grunt) {
     if (grunt.option('prod')) {
       // add your production server task here
       grunt.task.run([
+        'test',
         'shell:prodServer'
       ]);
     } else {
@@ -138,13 +139,12 @@ module.exports = function(grunt) {
   grunt.registerTask('deploy', function(n) {
     if (grunt.option('prod')) {
       grunt.task.run([
-        'test',
         'build',
-        'upload'
+        'server-dev'
       ]);
     } else {
       grunt.task.run([
-        'upload'
+        'server-dev'
       ]);
     }
   }
